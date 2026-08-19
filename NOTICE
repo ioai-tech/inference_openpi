@@ -1,0 +1,6 @@
+inference_openpi
+Copyright 2026 inference_openpi authors
+
+This product includes the openpi project as a git submodule
+(https://github.com/Physical-Intelligence/openpi), licensed under the Apache
+License, Version 2.0.

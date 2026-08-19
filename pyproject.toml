@@ -1,0 +1,22 @@
+[project]
+name = "inference-openpi"
+version = "0.1.0"
+description = "OpenPI inference wrapper for local ALOHA-style checkpoints (does not modify the openpi submodule)"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+authors = [{ name = "inference_openpi authors" }]
+dependencies = [
+    "numpy>=1.22.4,<2.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.urls]
+Repository = "https://github.com/ioai-tech/inference_openpi"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,57 @@
+# ALOHA profile aligned with the local Orbax checkpoint under checkpoints/.
+# Copy this file to adapt another robot or camera layout; do not edit openpi/.
+
+name: aloha
+
+server:
+  # Address the ROS2 client uses to reach the GPU policy server.
+  # The server itself always binds 0.0.0.0.
+  host: 127.0.0.1
+  port: 8000
+
+policy:
+  prompt: ""
+  # Must stay false for this checkpoint (no ALOHA joint-flip / gripper remap).
+  adapt_to_pi: false
+  # Set false if real-robot motion looks like stacked deltas / drift.
+  use_delta_joint_actions: true
+  # Must match checkpoints/assets/training_dataset/norm_stats.json
+  asset_id: training_dataset
+  image_size: 224
+  action_horizon: 25
+
+control:
+  hz: 30
+  ready_timeout_sec: 30
+
+cameras:
+  # RealSense / compressed streams usually need best_effort.
+  qos: best_effort
+  timeout_sec: 1.0
+  topics:
+    cam_high: /camera/high/color/image_raw
+    cam_low: /camera/low/color/image_raw
+    cam_left_wrist: /camera/left_wrist/color/image_raw
+    cam_right_wrist: /camera/right_wrist/color/image_raw
+
+joints:
+  state_topic: /joint_states
+  command_topic: /aloha/joint_command
+  # joint_state | float64_multi_array
+  command_type: joint_state
+  # Order must match training: left 6 + left gripper + right 6 + right gripper.
+  names:
+    - left_waist
+    - left_shoulder
+    - left_elbow
+    - left_forearm_roll
+    - left_wrist_angle
+    - left_wrist_rotate
+    - left_gripper
+    - right_waist
+    - right_shoulder
+    - right_elbow
+    - right_forearm_roll
+    - right_wrist_angle
+    - right_wrist_rotate
+    - right_gripper

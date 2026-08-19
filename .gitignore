@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.uv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+*.parquet
+.DS_Store
+
+# Local Orbax / safetensors weights (keep only tracked files under checkpoints/)
+checkpoints/*
+!checkpoints/.gitignore
+!checkpoints/README.md
+
+# openpi uv environment created by bootstrap
+openpi/.venv/
